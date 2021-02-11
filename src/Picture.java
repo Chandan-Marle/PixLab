@@ -113,6 +113,46 @@ public class Picture extends SimplePicture {
 		}
 	}
 
+
+	public void keepOnlyBlue() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				pixelObj.setRed(0);
+				pixelObj.setGreen(0);
+			}
+		}
+  	}
+
+	public void negate() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+
+				pixelObj.setRed(255 - pixelObj.getRed());
+				pixelObj.setBlue(255 - pixelObj.getBlue());
+				pixelObj.setGreen(255 - pixelObj.getGreen());
+
+			}
+		}
+	} 
+
+	public void grayscale()
+	{
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		for (Pixel pixelObj : rowArray)
+		{   
+		  float avgerage = ((pixelObj.getGreen() + pixelObj.getBlue() + pixelObj.getRed()) / 3);
+		  int avg = (int)(avgerage);
+		  pixelObj.setBlue(avg);
+		  pixelObj.setGreen(avg);
+		  pixelObj.setRed(avg);
+		}
+	  }
+	}
+
 	/** Mirror just part of a picture of a temple */
 	public void mirrorTemple() {
 		int mirrorPoint = 276;
